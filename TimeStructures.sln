@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeStructures", "TimeStructures\TimeStructures.csproj", "{2AC02249-D16F-417C-A492-56D26891B1BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeStructuresTests", "TimeStructuresTests\TimeStructuresTests.csproj", "{F4E72664-CD89-4DD6-B39F-F539FEF4D344}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC02249-D16F-417C-A492-56D26891B1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC02249-D16F-417C-A492-56D26891B1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC02249-D16F-417C-A492-56D26891B1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC02249-D16F-417C-A492-56D26891B1BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E72664-CD89-4DD6-B39F-F539FEF4D344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E72664-CD89-4DD6-B39F-F539FEF4D344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E72664-CD89-4DD6-B39F-F539FEF4D344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E72664-CD89-4DD6-B39F-F539FEF4D344}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {043AFB8D-213B-4859-8D75-0EB18FAA3768}
+	EndGlobalSection
+EndGlobal
