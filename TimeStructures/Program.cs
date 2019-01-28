@@ -33,6 +33,9 @@ namespace TimeStructures
             //Console.WriteLine(period + period2);
             //Console.WriteLine(TimePeriod.Plus(period, period2));
 
+            Time czas = new Time();
+            var temp = new Time(1, 1, 1);
+
             var time = new Time(0, 59, 59);
             var timePeriod = new TimePeriod(30, 02, 02);
             Console.WriteLine(time.Plus(timePeriod));

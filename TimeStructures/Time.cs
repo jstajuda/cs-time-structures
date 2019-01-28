@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace TimeStructures
 {
+    /// <summary>
+    /// Provides 24h point in time representation 
+    /// </summary>
     public struct Time : IEquatable<Time>, IComparable<Time>
     {
         #region Properties and fields
@@ -14,20 +17,53 @@ namespace TimeStructures
         private byte minutes;
         private byte seconds;
 
+        /// <summary>
+        /// Gets hour value (0-23)
+        /// </summary>
         public byte Hours => hours;
+
+        /// <summary>
+        /// Gets minutes value (0-59)
+        /// </summary>
         public byte Minutes => minutes;
+
+        /// <summary>
+        /// Gets seconds value (0-59)
+        /// </summary>
         public byte Seconds => seconds;
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Time"/> struct.
+        /// </summary>
+        /// <param name="hh">Hour to set</param>
+        /// <param name="mm">Minute to set</param>
+        /// <param name="ss">Second to set</param>
         public Time(byte hh, byte mm, byte ss)
         {
             hours = (byte)(hh % 24);
             minutes = (byte)(mm % 60);
             seconds = (byte)(ss % 60);
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Time"/> struct.
+        /// </summary>
+        /// <param name="hh">Hour to set</param>
+        /// <param name="mm">Minute to set</param>
         public Time(byte hh, byte mm) : this(hh, mm, default(byte)) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Time"/> struct.
+        /// </summary>
+        /// <param name="hh">Hour to set</param>
         public Time(byte hh) : this(hh, default(byte), default(byte)) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Time"/> struct.
+        /// </summary>
+        /// <param name="timeString">Input time string (hh:mm:ss)</param>
         public Time(string timeString)
         {
             hours = default(byte);
@@ -45,6 +81,11 @@ namespace TimeStructures
         #endregion
 
         #region Create from string
+        /// <summary>
+        /// Returns a new instance of the <see cref="Time"/> struct.
+        /// </summary>
+        /// <param name="timeString">Input time string (hh:mm:ss)</param>
+        /// <returns>Time struct with given hour, minute, second</returns>
         public static Time CreateFromString(string timeString)
         {
             if (String.IsNullOrWhiteSpace(timeString)) throw new ArgumentException();
@@ -72,6 +113,11 @@ namespace TimeStructures
         #endregion
 
         #region Addition and Difference
+        /// <summary>
+        /// Increases current time with given time period.
+        /// </summary>
+        /// <param name="timePeriod">TimePeriod object</param>
+        /// <returns>New instance of Time struct.</returns>
         public Time Plus(TimePeriod timePeriod)
         {
             long secondsLeft = timePeriod.Seconds;
@@ -98,6 +144,12 @@ namespace TimeStructures
             return new Time(timeHours, timeMinutes, timeSeconds);
         }
 
+        /// <summary>
+        /// Increases current time with given time period.
+        /// </summary>
+        /// <param name="time">Time object to increase</param>
+        /// <param name="timePeriod">TimePeriod object</param>
+        /// <returns>New instance of Time struct.</returns>
         public static Time Plus(Time time, TimePeriod timePeriod)
         {
             return time.Plus(timePeriod);
@@ -108,6 +160,12 @@ namespace TimeStructures
             return time.Plus(timePeriod);
         }
 
+        /// <summary>
+        /// Returns time period between two points in time.
+        /// </summary>
+        /// <param name="timeOne">Point in time</param>
+        /// <param name="timeTwo">Point in time</param>
+        /// <returns>TimePeriod object being the difference between given points in time.</returns>
         public static TimePeriod Difference(Time timeOne, Time timeTwo)
         {
             long seconds;
