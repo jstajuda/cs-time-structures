@@ -9,6 +9,7 @@ namespace TimeStructures
 {
     public struct Time : IEquatable<Time>, IComparable<Time>
     {
+        #region Properties and fields
         private byte hours;
         private byte minutes;
         private byte seconds;
@@ -16,17 +17,34 @@ namespace TimeStructures
         public byte Hours => hours;
         public byte Minutes => minutes;
         public byte Seconds => seconds;
+        #endregion
 
+        #region Constructors
         public Time(byte hh, byte mm, byte ss)
         {
             hours = (byte)(hh % 24);
             minutes = (byte)(mm % 60);
             seconds = (byte)(ss % 60);
         }
-
         public Time(byte hh, byte mm) : this(hh, mm, default(byte)) { }
         public Time(byte hh) : this(hh, default(byte), default(byte)) { }
+        public Time(string timeString)
+        {
+            hours = default(byte);
+            minutes = default(byte);
+            seconds = default(byte);
 
+            Time timeFromString = Time.CreateFromString(timeString);
+            if(timeFromString != null)
+            {
+                hours = timeFromString.Hours;
+                minutes = timeFromString.Minutes;
+                seconds = timeFromString.Seconds;
+            }
+        }
+        #endregion
+
+        #region Create from string
         public static Time CreateFromString(string timeString)
         {
             if (String.IsNullOrWhiteSpace(timeString)) throw new ArgumentException();
@@ -51,7 +69,9 @@ namespace TimeStructures
                     return new Time();
             }
         }
+        #endregion
 
+        #region Addition and Difference
         public Time Plus(TimePeriod timePeriod)
         {
             long secondsLeft = timePeriod.Seconds;
@@ -102,13 +122,9 @@ namespace TimeStructures
 
             return Difference(timeTwo, timeOne);
         }
+        #endregion
 
-
-        public override string ToString()
-        {
-            return $"{Hours:00} : {Minutes:00} : {Seconds:00}";
-        }
-
+        #region Equality
         public bool Equals(Time other)
         {
             return
@@ -138,7 +154,9 @@ namespace TimeStructures
         {
             return base.GetHashCode();
         }
+        #endregion
 
+        #region Comparison
         public int CompareTo(Time other)
         {
             if (hours.CompareTo(other.hours) == 0)
@@ -167,5 +185,12 @@ namespace TimeStructures
         {
             return x.CompareTo(y) <= 0;
         }
+        #endregion
+
+        public override string ToString()
+        {
+            return $"{Hours:00}:{Minutes:00}:{Seconds:00}";
+        }
+
     }
 }

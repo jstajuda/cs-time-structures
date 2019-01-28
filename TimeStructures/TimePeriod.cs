@@ -9,9 +9,12 @@ namespace TimeStructures
 {
     public struct TimePeriod : IEquatable<TimePeriod>, IComparable<TimePeriod>
     {
+        #region Properties and fields
         private long seconds;
         public long Seconds => seconds;
+        #endregion
 
+        #region Constructors
         public TimePeriod(byte hours, byte minutes, byte seconds)
         {
             if (seconds > 59 || minutes > 59) throw new ArgumentOutOfRangeException();
@@ -35,6 +38,19 @@ namespace TimeStructures
             seconds = Time.Difference(timeOne, timeTwo).Seconds;
         }
 
+        public TimePeriod(string timeString)
+        {
+            seconds = default(long);
+
+            TimePeriod periodFromString = TimePeriod.CreateFromString(timeString);
+            if(periodFromString != null)
+            {
+                seconds = periodFromString.Seconds;
+            }
+        }
+        #endregion
+
+        #region Create from string
         public static TimePeriod CreateFromString(string timeString)
         {
             if (String.IsNullOrWhiteSpace(timeString)) throw new ArgumentException();
@@ -59,7 +75,9 @@ namespace TimeStructures
                     return new TimePeriod();
             }
         }
+        #endregion
 
+        #region Addition
         public TimePeriod Plus(TimePeriod timePeriod)
         {
             return new TimePeriod(seconds + timePeriod.Seconds);
@@ -74,20 +92,9 @@ namespace TimeStructures
         {
             return periodOne.Plus(periodTwo);
         }
+        #endregion
 
-        public override string ToString()
-        {
-            long secondsLeft = seconds;
-
-            int hours = (int)(secondsLeft / 3600);
-            secondsLeft %= 3600;
-
-            int minutes = (int)(secondsLeft / 60);
-            secondsLeft %= 60;
-
-            return $"{hours:000} : {minutes:00} : {secondsLeft:00}";
-        }
-
+        #region Equality
         public bool Equals(TimePeriod other)
         {
             return other.seconds == seconds;
@@ -105,11 +112,6 @@ namespace TimeStructures
             return base.GetHashCode();
         }
 
-        public int CompareTo(TimePeriod other)
-        {
-            return Seconds.CompareTo(other.Seconds);
-        }
-
         public static bool operator ==(TimePeriod x, TimePeriod y)
         {
             return x.Equals(y);
@@ -118,6 +120,13 @@ namespace TimeStructures
         public static bool operator !=(TimePeriod x, TimePeriod y)
         {
             return !x.Equals(y);
+        }
+        #endregion
+
+        #region Comparison
+        public int CompareTo(TimePeriod other)
+        {
+            return Seconds.CompareTo(other.Seconds);
         }
 
         public static bool operator >(TimePeriod x, TimePeriod y)
@@ -138,6 +147,20 @@ namespace TimeStructures
         public static bool operator <=(TimePeriod x, TimePeriod y)
         {
             return x.CompareTo(y) <= 0;
+        }
+        #endregion
+
+        public override string ToString()
+        {
+            long secondsLeft = seconds;
+
+            int hours = (int)(secondsLeft / 3600);
+            secondsLeft %= 3600;
+
+            int minutes = (int)(secondsLeft / 60);
+            secondsLeft %= 60;
+
+            return $"{hours:000}:{minutes:00}:{secondsLeft:00}";
         }
     }
 }

@@ -33,11 +33,18 @@ namespace TimeStructures
             //Console.WriteLine(period + period2);
             //Console.WriteLine(TimePeriod.Plus(period, period2));
 
-            var time = new Time(12, 59, 00);
-            var timePeriod = new TimePeriod(1, 17, 00);
+            var time = new Time(0, 59, 59);
+            var timePeriod = new TimePeriod(30, 02, 02);
             Console.WriteLine(time.Plus(timePeriod));
 
+            //var time3 = new Time("00:0:12");
+            //Console.WriteLine(time3);
 
+            //var period2 = new TimePeriod("1:20:30");
+            //Console.WriteLine(period2);
+
+            //var times = new Time("25");
+            //Console.WriteLine(times);
             Console.ReadKey();
         }
     }
