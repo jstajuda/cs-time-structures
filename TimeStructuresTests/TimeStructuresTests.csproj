@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TimeStructures\TimeStructures.csproj">
-      <Project>{2ac02249-d16f-417c-a492-56d26891b1ba}</Project>
+      <Project>{c03b2f94-e909-4486-ad2d-8d10e9e94427}</Project>
       <Name>TimeStructures</Name>
     </ProjectReference>
   </ItemGroup>

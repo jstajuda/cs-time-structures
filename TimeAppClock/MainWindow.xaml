@@ -1,0 +1,32 @@
+﻿<Window x:Class="TimeAppClock.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeAppClock"
+        mc:Ignorable="d"
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Name="TimeLabel" Content="00:00:00" Grid.Row="1" Grid.ColumnSpan="3" FontSize="24" FontWeight="Black"
+               HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+        <Button Name="AddHoursButton" Grid.Row="0" Grid.Column="0" Click="AddHoursButton_Click">+</Button>
+        <Button Name="AddMinutesButton" Grid.Row="0" Grid.Column="1" Click="AddMinutesButton_Click">+</Button>
+        <Button Name="AddSecondsButton" Grid.Row="0" Grid.Column="2" Click="AddSecondsButton_Click">+</Button>
+
+        <Button Name="SubHoursButton" Grid.Row="2" Grid.Column="0" Click="SubHoursButton_Click">-</Button>
+        <Button Name="SubMinutesButton" Grid.Row="2" Grid.Column="1" Click="SubMinutesButton_Click">-</Button>
+        <Button Name="SubSecondsButton" Grid.Row="2" Grid.Column="2" Click="SubSecondsButton_Click">-</Button>
+    </Grid>
+</Window>

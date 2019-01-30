@@ -202,5 +202,20 @@ namespace TimeStructuresTests
 
             Assert.AreEqual(expectedString, actual.ToString());
         }
+
+        [DataTestMethod]
+        [DataRow("00:00:01", "00:00:00", "00:00:01")]
+        [DataRow("01:03:00", "01:02:00", "00:01:00")]
+        [DataRow("12:30:50", "00:00:55", "12:29:55")]
+        [DataRow("00:00:00", "00:00:00", "00:00:00")]
+        [DataRow("00:00:00", "00:00:01", "23:59:59")]
+        public void SubstractTimePeriodCorrect(string inputStringOne, string inputStringTwo, string expectedString)
+        {
+            var time = new Time(inputStringOne);
+            var timePeriod = new TimePeriod(inputStringTwo);
+            var actual = time - timePeriod;
+
+            Assert.AreEqual(expectedString, actual.ToString());
+        }
     }
 }

@@ -161,6 +161,75 @@ namespace TimeStructures
         }
 
         /// <summary>
+        /// Substracts given time period from current time.
+        /// </summary>
+        /// <param name="timePeriod">TimePeriod to substract</param>
+        /// <returns>New instance of Time struct.</returns>
+        public Time Minus(TimePeriod timePeriod)
+        {
+            long secondsLeft = timePeriod.Seconds;
+
+            int timePeriodHours = (int)(secondsLeft / 3600);
+            secondsLeft %= 3600;
+
+            int timePeriodMinutes = (int)(secondsLeft / 60);
+            secondsLeft %= 60;
+
+
+            byte timeSeconds, secondsOverflow = 0;
+            if(secondsLeft > seconds)
+            {
+                timeSeconds = (byte)(60 - (secondsLeft - seconds));
+                secondsOverflow = 1;
+            } else
+            {
+                timeSeconds = (byte)(seconds - secondsLeft);
+            }
+
+            byte timeMinutes, minutesOverflow = 0;
+            timePeriodMinutes += secondsOverflow;
+            if (timePeriodMinutes > minutes)
+            {
+                timeMinutes = (byte)(60 - (timePeriodMinutes - minutes));
+                minutesOverflow = 1;
+            }
+            else
+            {
+                timeMinutes = (byte)(minutes - timePeriodMinutes);
+            }
+
+            byte timeHours;
+            timePeriodHours += minutesOverflow;
+            timePeriodHours %= 24;
+            if(timePeriodHours > hours)
+            {
+                timeHours = (byte)(24 - (timePeriodHours - hours));
+            }
+            else
+            {
+                timeHours = (byte)(hours - timePeriodHours);
+            }
+
+            return new Time(timeHours, timeMinutes, timeSeconds);
+        }
+
+        /// <summary>
+        /// Substract given time period from current time.
+        /// </summary>
+        /// <param name="time">Time object to substract from</param>
+        /// <param name="timePeriod">TimePeriod object to substract</param>
+        /// <returns>New instance of Time struct.</returns>
+        public static Time Minus(Time time, TimePeriod timePeriod)
+        {
+            return time.Minus(timePeriod);
+        }
+
+        public static Time operator -(Time time, TimePeriod timePeriod)
+        {
+            return time.Minus(timePeriod);
+        }
+
+        /// <summary>
         /// Returns time period between two points in time.
         /// </summary>
         /// <param name="timeOne">Point in time</param>
